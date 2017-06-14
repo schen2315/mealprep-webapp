@@ -25,7 +25,7 @@ SECRET_KEY = '=(ag=rt&ypgdbv=jq6%n8w7mtn05-q2hs9ymr8dyhroa5+348^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://thawing-scrubland-46559.herokuapp.com/", "localhost"]
 
 
 # Application definition
