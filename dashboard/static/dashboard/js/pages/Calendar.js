@@ -23,7 +23,7 @@ export default class Calendar extends React.Component {
     CalendarStores.on("update_week", this.loadThisWeek)
     this.getThisWeek()
     console.log("send post request")
-    axios.post("https://127.0.0.1:8000/", {}).then((response)=> {console.log(response)});
+    axios.post("https://thawing-scrubland-46559.herokuapp.com/", {}).then((response)=> {console.log(response)});
   }
   componentWillUnmount() {
     CalendarStores.removeListener("update_week", this.loadThisWeek)
