@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import * as CalendarActions from "../actions/CalendarActions"
 import CalendarStores from "../stores/CalendarStores"
@@ -23,7 +24,8 @@ export default class Calendar extends React.Component {
     CalendarStores.on("update_week", this.loadThisWeek)
     this.getThisWeek()
     console.log("send post request")
-    axios.post("https://thawing-scrubland-46559.herokuapp.com/", {}).then((response)=> {console.log(response)});
+    axios.post("https://thawing-scrubland-46559.herokuapp.com/",
+      {'csrftoken': Cookies.get('csrftoken')}).then((response)=>{console.log(response)});
   }
   componentWillUnmount() {
     CalendarStores.removeListener("update_week", this.loadThisWeek)

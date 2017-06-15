@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 ]
 SESSION_ENGINE = "django.contrib.sessions.backends.file"
 # SESSION_FILE_PATH =
+CSRF_USE_SESSIONS = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
