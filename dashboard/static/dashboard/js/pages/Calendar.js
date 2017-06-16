@@ -25,8 +25,10 @@ export default class Calendar extends React.Component {
     this.getThisWeek()
     console.log("send post request")
     console.log("cookie: ", Cookies.get('csrftoken'))
-    axios.post("https://thawing-scrubland-46559.herokuapp.com/",
-      {'csrftoken': Cookies.get('csrftoken')}).then((response)=>{console.log(response)});
+    var config = {
+      headers: { 'X-CSRFToken': Cookies.get('csrftoken') }
+    }
+    axios.post("https://thawing-scrubland-46559.herokuapp.com/", {}, config).then((response)=>{console.log(response)});
   }
   componentWillUnmount() {
     CalendarStores.removeListener("update_week", this.loadThisWeek)
