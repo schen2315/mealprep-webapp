@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import sys
-import urlparse
+import urllib.parse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'mealprep.wsgi.application'
 # edit this with environment variables when deploying to heroku
 try:
     if('DATABASE_URL' in os.environ):   # production
-        url = urlparse.urlparse(os.environ['DATABASE_URL'])
+        url = urllib.parse(os.environ['DATABASE_URL'])
 
         # Ensure default database exists.
         DATABASES['default'] = DATABASES.get('default', {})
