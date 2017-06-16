@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.middleware.csrf import get_token
+
 
 # # Create your views here.
 # def index(request):
@@ -10,6 +12,7 @@ from django.shortcuts import render
 #     return render(request, 'dashboard/index.html')
 
 def index(request):
+    csrf_token = get_token(request) # should set the csrf token 
     if request.method == 'POST':
         if request.session.test_cookie_worked():
             request.session.delete_test_cookie()
