@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
+import urlparse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,20 +80,39 @@ WSGI_APPLICATION = 'mealprep.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 # edit this with environment variables when deploying to heroku
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sample',
-        'USER': 'admin',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
-        'OPTIONS': {
-            'isolation_level': 'read committed'
-        }
-    }
-}
+try:
+    if('DATABASE_URL' in os.environ):   # production
+        url = urlparse.urlparse(os.environ['DATABASE_URL'])
 
+        # Ensure default database exists.
+        DATABASES['default'] = DATABASES.get('default', {})
+
+        # Update with environment configuration.
+        DATABASES['default'].update({
+            'NAME': url.path[1:],
+            'USER': url.username,
+            'PASSWORD': url.password,
+            'HOST': url.hostname,
+            'PORT': url.port,
+        })
+        if url.scheme == 'mysql':
+            DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+    else:   # local
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'sample',
+                'USER': 'admin',
+                'PASSWORD': 'password',
+                'HOST': 'localhost',
+                'PORT': '',
+                'OPTIONS': {
+                    'isolation_level': 'read committed'
+                }
+            }
+        }
+except Exception:
+    print 'Unexpected error:', sys.exc_info()
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
