@@ -95,7 +95,7 @@ try:
             'HOST': url.hostname,
             'PORT': url.port,
         })
-        if url.scheme == 'mysql':
+        if(url.scheme == 'mysql'):
             DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
     else:   # local
         DATABASES = {
@@ -112,7 +112,7 @@ try:
             }
         }
 except Exception:
-    print 'Unexpected error:', sys.exc_info()
+    print ('Unexpected error:', sys.exc_info())
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
