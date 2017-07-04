@@ -6,9 +6,10 @@ import * as CalendarActions from "../actions/CalendarActions"
 import CalendarStores from "../stores/CalendarStores"
 import Day from "../components/calendar/Day"
 
+
 export default class Calendar extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.getThisWeek = this.getThisWeek.bind(this);
     this.getThisMonth = this.getThisMonth.bind(this);
     this.loadThisWeek = this.loadThisWeek.bind(this);
@@ -23,12 +24,10 @@ export default class Calendar extends React.Component {
   componentWillMount() {
     CalendarStores.on("update_week", this.loadThisWeek)
     this.getThisWeek()
-    console.log("send post request")
-    console.log("cookie: ", Cookies.get('csrftoken'))
     var config = {
       headers: { 'X-CSRFToken': Cookies.get('csrftoken') }
     }
-    axios.post("https://thawing-scrubland-46559.herokuapp.com/", {}, config).then((response)=>{console.log(response)});
+    // axios.post("https://thawing-scrubland-46559.herokuapp.com/", {}, config).then((response)=>{console.log(response)});
   }
   componentWillUnmount() {
     CalendarStores.removeListener("update_week", this.loadThisWeek)
@@ -40,7 +39,6 @@ export default class Calendar extends React.Component {
 
   }
   loadThisWeek(args) {
-    console.log(args.week);
 
     this.week = args.week;
     this.weekDetailed = args.weekDetailed;
@@ -50,13 +48,9 @@ export default class Calendar extends React.Component {
     if(this.state.expand !== index)
       this.setState({expand:index});
     else this.setState({expand:-1});
-    // CalendarActions.expandDay();
   }
   render() {
-
     if(this.state.render) {
-      // const date = this.date;
-      // const nextMeal = this.nextMeal;
       const week = this.week;
       const weekDetailed = this.weekDetailed;
       var week_html = []

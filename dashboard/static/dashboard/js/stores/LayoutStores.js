@@ -10,6 +10,7 @@ class LayoutStores extends EventEmitter {
     switch(action.type) {
       case "NAV_TOGGLE": {
         this.emit("toggleSidebar")
+        break;
       }
     }
   }

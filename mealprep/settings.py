@@ -25,9 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=(ag=rt&ypgdbv=jq6%n8w7mtn05-q2hs9ymr8dyhroa5+348^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if('DEBUG' in os.environ):    # production
+    DEBUG = os.environ['DEBUG']
+else:   # dev
+    DEBUG = True
 
-ALLOWED_HOSTS = ["thawing-scrubland-46559.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["thawing-scrubland-46559.herokuapp.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -42,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 SESSION_ENGINE = "django.contrib.sessions.backends.file"
-# SESSION_FILE_PATH =
 CSRF_USE_SESSIONS = False
 
 MIDDLEWARE = [

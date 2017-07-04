@@ -1,8 +1,8 @@
 import React from "react";
 
 export default class Day extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.meals_html_profiles = this.meals_html_profiles.bind(this);
   }
   componentWillMount() {
