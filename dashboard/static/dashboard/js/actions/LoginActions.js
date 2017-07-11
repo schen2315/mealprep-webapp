@@ -2,7 +2,7 @@ import dispatcher from "../dispatcher";
 import axios from "axios";
 import Cookies from "js-cookie"
 
-const host = "http://127.0.0.1:8000";
+//const host = "http://127.0.0.1:8000";
 
 export function isValidNewUser(data) {
   dispatcher.dispatch({
@@ -12,7 +12,8 @@ export function isValidNewUser(data) {
   axios({
     method: 'post',
     // eventually change to https
-    url: host + "/isvalidnewuser/",
+    //url: host + "/isvalidnewuser/",
+    url: "/isvalidnewuser/",
     data: data,
     headers: {
       'Content-Type': 'application/json'
@@ -32,7 +33,8 @@ export function createUser(data) {
   axios({
     method: 'post',
     // eventually change to https
-    url: host + "/createuser/",
+    //url: host + "/createuser/",
+    url: "/createuser/",
     data: data,
   }).then((res) => {
     let type = "CREATE_NEW_USER_FAIL";
@@ -48,7 +50,8 @@ export function loginUser(fields) {
   });
   axios({
     method: 'post',
-    url: host + "/loginuser/",
+    //url: host + "/loginuser/",
+    url: "/loginuser/",
     data: fields,
     headers: { 'X-CSRFToken': Cookies.get('csrftoken') }
   }).then((res) => {
@@ -68,7 +71,8 @@ export function logoutUser() {
   });
   axios({
     method: 'get',
-    url: host + "/logoutuser/",
+    //url: host + "/logoutuser/",
+    url: "/logoutuser/",
   }).then((res) => {
     dispatcher.dispatch({
       type: "LOGGED_OUT"

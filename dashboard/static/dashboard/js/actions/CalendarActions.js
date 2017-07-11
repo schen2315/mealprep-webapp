@@ -3,7 +3,7 @@ import axios from "axios";
 
 import RoutingStores from "../stores/RoutingStores"
 
-const host = "http://127.0.0.1:8000";
+//const host = "http://127.0.0.1:8000";
 
 export function getThisWeek() {
   // setTimeout is needed here to prevent the 
@@ -18,7 +18,8 @@ export function getThisWeek() {
   axios({
     method: 'post',
     // eventually change to https
-    url: host + "/getweek/",
+    //url: host + "/getweek/",
+    url: "/getweek/",
   }).then((res) => {
     if(res.data.success == parseInt(1)) {
       dispatcher.dispatch({
