@@ -1,1 +1,3 @@
 node_modules/*
+dashboard/static/dashboard/js/client.min.js
+dashboard/__pycache__/*
