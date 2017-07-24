@@ -1,2 +1,2 @@
-release: webpack --config ./dashboard/webpack.config.js
+release: ./release-tasks.sh
 web: gunicorn mealprep.wsgi
