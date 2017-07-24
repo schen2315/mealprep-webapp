@@ -26,10 +26,9 @@
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
   },
-  "devDependencies": {
-    "webpack": "^1.12.9"
-  },
+  "devDependencies": {},
   "scripts": {
+    "preinstall": "npm i -g webpack",
     "dev": "webpack-dev-server --content-base templates/dashboard --inline --hot"
   },
   "author": "Song Chen",
