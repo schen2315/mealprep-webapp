@@ -84,6 +84,7 @@ WSGI_APPLICATION = 'mealprep.wsgi.application'
 # edit this with environment variables when deploying to heroku
 try:
     if('DATABASE_URL' in os.environ):   # production
+        print("Using Production database")
         url = urllib.parse(os.environ['DATABASE_URL'])
 
         # Ensure default database exists.
@@ -113,6 +114,7 @@ try:
                 }
             }
         }
+        print("Using local database");
 except Exception:
     print ('Unexpected error:', sys.exc_info())
 
